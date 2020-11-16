@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Electric-Vehicle-User-Program:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Electric_Vehicle_User_Program_jar</output-path>
+    <root id="archive" name="Electric-Vehicle-User-Program.jar">
+      <element id="module-output" name="Electric-Vehicle-User-Program" />
+    </root>
+  </artifact>
+</component>

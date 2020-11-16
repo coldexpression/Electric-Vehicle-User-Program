@@ -59,7 +59,7 @@ public class Mainform extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         sp.setViewportView(arealist);
         setContentPane(JPanel);
-        setSize(1300,600);
+        setSize(1600,600);
         Buttonsize();
         pri_data = ci.pri_charge();
         env_data = ci.env_charge();
@@ -452,13 +452,34 @@ public class Mainform extends JFrame{
                 }
             }
         });
+        List <List> lb_pri_data = pri_data;
+        List <List> lb_env_data = env_data;
         arealist.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 int select_list_index=arealist.getSelectedIndex();
                 String select_list_name = arealist.getSelectedValue().toString();
-                int list_index;
-                while(select_list_name.equals())
+                int pri_list_index=0;
+                int env_list_index=0;
+                while(!select_list_name.equals(lb_pri_data.get(pri_list_index).get(0)) && !select_list_name.equals(lb_env_data.get(env_list_index).get(0))) {
+                    if(pri_list_index < lb_pri_data.size()-1) {
+                        pri_list_index++;
+                    }
+                    if(env_list_index < lb_env_data.size()-1) {
+                        env_list_index++;
+                    }
+                }
+                if(select_list_name.equals(lb_pri_data.get(pri_list_index).get(0))) {
+                    lb_locate.setText(lb_pri_data.get(pri_list_index).get(0).toString());
+                    lb_battery.setText(lb_pri_data.get(pri_list_index).get(1).toString());
+                    lb_time.setText(lb_pri_data.get(pri_list_index).get(2).toString());
+                    lb_use.setText(lb_pri_data.get(pri_list_index).get(3).toString());
+                } else if(select_list_name.equals(lb_env_data.get(env_list_index).get(0))) {
+                    lb_locate.setText(lb_env_data.get(env_list_index).get(0).toString());
+                    lb_battery.setText(lb_env_data.get(env_list_index).get(1).toString());
+                    lb_time.setText(lb_env_data.get(env_list_index).get(2).toString());
+                    lb_use.setText(lb_env_data.get(env_list_index).get(3).toString());
+                }
             }
         });
     }
