@@ -22,6 +22,18 @@ public class Mainform extends JFrame{
     private JCheckBox jejudo;
     boolean re_empty_check = true;
     int vec_size=0;
+    int start_seoul_size=0;
+    int end_seoul_size=0;
+    int start_kyunggi_size=0;
+    int end_kyunggi_size=0;
+    int start_junrado_size=0;
+    int end_junrado_size=0;
+    int start_chungcheongdo_size=0;
+    int end_chungcheongdo_size=0;
+    int start_gyeongsangdo_size=0;
+    int end_gyeongsangdo_size=0;
+    int start_jejudo_size=0;
+    int end_jejudo_size=0;
     public void Buttonsize() {
         seoul.setBounds(200,200,200,200);
         kyunggi.setBounds(200,210,200,200);
@@ -64,14 +76,15 @@ public class Mainform extends JFrame{
                         re_empty_check = true;
                     } else {
                         re_empty_check = false;
-                        vec_size = recylce_vec.size();
+                        start_seoul_size = recylce_vec.size();
                     }
                     for (int i = 0; i < st_charge_data.size(); i++) {
                         if (st_charge_data.get(i).contains("서울시") || st_charge_data.get(i).contains("서울특별시")) {
                             recylce_vec.addElement(st_charge_data.get(i));
                         }
                     }
-                    if(re_empty_check == true) {
+                    end_seoul_size = recylce_vec.size() - start_seoul_size;
+                    if(re_empty_check == true)  {
                         arealist.setListData(recylce_vec);
                     }
                     else {
@@ -80,12 +93,21 @@ public class Mainform extends JFrame{
                     }
                 }
                 else {
-                    if(re_empty_check == true || vec_size == recylce_vec.size()) {
+                    if(re_empty_check == true || start_seoul_size == recylce_vec.size()) {
                         arealist.setListData(charge_vec);
                         recylce_vec.removeAllElements();
                     } else {
-                        while(recylce_vec.size() != vec_size) {
-                            recylce_vec.remove(vec_size);
+                       /* while(recylce_vec.size() != seoul_size) {
+                            recylce_vec.remove(seoul_size);
+                        } */
+                        int index=0;
+                        for(int i=0;i<recylce_vec.size();i++) {
+                            if(recylce_vec.get(i).toString().contains("서울시") || recylce_vec.get(i).toString().contains("서울특별시")) {
+                                index = i;
+                            }
+                        }
+                        for(int i=0;i<end_seoul_size;i++) {
+                            recylce_vec.remove(index);
                         }
                         arealist.removeAll();
                         arealist.setListData(recylce_vec);
@@ -102,13 +124,14 @@ public class Mainform extends JFrame{
                         re_empty_check = true;
                     } else {
                         re_empty_check = false;
-                        vec_size = recylce_vec.size();
+                        start_kyunggi_size = recylce_vec.size();
                     }
                     for (int i = 0; i < st_charge_data.size(); i++) {
                         if (st_charge_data.get(i).contains("경기도") || st_charge_data.get(i).contains("인천시")) {
                             recylce_vec.addElement(st_charge_data.get(i));
                         }
                     }
+                    end_kyunggi_size = recylce_vec.size() - start_kyunggi_size;
                     if(re_empty_check == true) {
                         arealist.setListData(recylce_vec);
                     }
@@ -118,12 +141,22 @@ public class Mainform extends JFrame{
                     }
                 }
                 else {
-                    if(re_empty_check == true || vec_size == recylce_vec.size()) {
+                    if(re_empty_check == true || start_kyunggi_size == recylce_vec.size()) {
                         arealist.setListData(charge_vec);
                         recylce_vec.removeAllElements();
                     } else {
-                        while(recylce_vec.size() != vec_size) {
-                            recylce_vec.remove(vec_size);
+                       /* while(recylce_vec.size() != kyunggi_size) {
+                            recylce_vec.remove(kyunggi_size);
+                        }*/
+                        int index=0;
+                        for(int i=0;i<recylce_vec.size();i++) {
+                            if(recylce_vec.get(i).toString().contains("경기도") || recylce_vec.get(i).toString().contains("인천시")) {
+                                index = i;
+                                break;
+                            }
+                        }
+                       for(int i=0;i<end_kyunggi_size;i++) {
+                                recylce_vec.remove(index);
                         }
                         arealist.removeAll();
                         arealist.setListData(recylce_vec);
@@ -140,7 +173,7 @@ public class Mainform extends JFrame{
                         re_empty_check = true;
                     } else {
                         re_empty_check = false;
-                        vec_size = recylce_vec.size();
+                        start_junrado_size = recylce_vec.size();
                     }
                     for (int i = 0; i < st_charge_data.size(); i++) {
                         if (st_charge_data.get(i).contains("전라도") || st_charge_data.get(i).contains("전라북도") ||
@@ -149,6 +182,7 @@ public class Mainform extends JFrame{
                             recylce_vec.addElement(st_charge_data.get(i));
                         }
                     }
+                    end_junrado_size = recylce_vec.size() - start_junrado_size;
                     if(re_empty_check == true) {
                         arealist.setListData(recylce_vec);
                     }
@@ -158,12 +192,24 @@ public class Mainform extends JFrame{
                     }
                 }
                 else {
-                    if(re_empty_check == true || vec_size == recylce_vec.size()) {
+                    if(re_empty_check == true || start_junrado_size == recylce_vec.size()) {
                         arealist.setListData(charge_vec);
                         recylce_vec.removeAllElements();
                     } else {
-                        while(recylce_vec.size() != vec_size) {
-                            recylce_vec.remove(vec_size);
+                        /*while(recylce_vec.size() != junrado_size) {
+                            recylce_vec.remove(junrado_size);
+                        } */
+                        int index=0;
+                        for(int i=0;i<recylce_vec.size();i++) {
+                            if(recylce_vec.get(i).toString().contains("전라도") || recylce_vec.get(i).toString().contains("전라북도") ||
+                                    recylce_vec.get(i).toString().contains("전라남도") || (recylce_vec.get(i).toString().contains("광주시") ==true && recylce_vec.get(i).toString().contains("경기도") == false) ||
+                                    recylce_vec.get(i).toString().contains("광주광역시")) {
+                                index = i;
+                                break;
+                            }
+                        }
+                        for(int i=0;i<end_junrado_size;i++) {
+                            recylce_vec.remove(index);
                         }
                         arealist.removeAll();
                         arealist.setListData(recylce_vec);
@@ -180,7 +226,7 @@ public class Mainform extends JFrame{
                         re_empty_check = true;
                     } else {
                         re_empty_check = false;
-                        vec_size = recylce_vec.size();
+                        start_chungcheongdo_size = recylce_vec.size();
                     }
                     for (int i = 0; i < st_charge_data.size(); i++) {
                         if (st_charge_data.get(i).contains("충청도") || st_charge_data.get(i).contains("충청북도") ||
@@ -189,6 +235,7 @@ public class Mainform extends JFrame{
                             recylce_vec.addElement(st_charge_data.get(i));
                         }
                     }
+                    end_chungcheongdo_size = recylce_vec.size() - start_chungcheongdo_size;
                     if(re_empty_check == true) {
                         arealist.setListData(recylce_vec);
                     }
@@ -198,12 +245,24 @@ public class Mainform extends JFrame{
                     }
                 }
                 else {
-                    if(re_empty_check == true || vec_size == recylce_vec.size()) {
+                    if(re_empty_check == true || start_chungcheongdo_size == recylce_vec.size()) {
                         arealist.setListData(charge_vec);
                         recylce_vec.removeAllElements();
                     } else {
-                        while(recylce_vec.size() != vec_size) {
-                            recylce_vec.remove(vec_size);
+                      /*  while(recylce_vec.size() != chungcheongdo_size) {
+                            recylce_vec.remove(chungcheongdo_size);
+                        } */
+                        int index=0;
+                        for(int i=0;i<recylce_vec.size();i++) {
+                            if(recylce_vec.get(i).toString().contains("충청도") || recylce_vec.get(i).toString().contains("충청북도") ||
+                                    recylce_vec.get(i).toString().contains("충청남도") || recylce_vec.get(i).toString().contains("세종시")||
+                                    recylce_vec.get(i).toString().contains("세종특별시")) {
+                                index = i;
+                                break;
+                            }
+                        }
+                        for(int i=0;i<end_chungcheongdo_size;i++) {
+                            recylce_vec.remove(index);
                         }
                         arealist.removeAll();
                         arealist.setListData(recylce_vec);
@@ -220,7 +279,7 @@ public class Mainform extends JFrame{
                         re_empty_check = true;
                     } else {
                         re_empty_check = false;
-                        vec_size = recylce_vec.size();
+                        start_gyeongsangdo_size = recylce_vec.size();
                     }
                     for (int i = 0; i < st_charge_data.size(); i++) {
                         if (st_charge_data.get(i).contains("경상도") || st_charge_data.get(i).contains("경상북도") ||
@@ -230,6 +289,7 @@ public class Mainform extends JFrame{
                             recylce_vec.addElement(st_charge_data.get(i));
                         }
                     }
+                    end_gyeongsangdo_size = recylce_vec.size() - start_gyeongsangdo_size;
                     if(re_empty_check == true) {
                         arealist.setListData(recylce_vec);
                     }
@@ -239,12 +299,25 @@ public class Mainform extends JFrame{
                     }
                 }
                 else {
-                    if(re_empty_check == true || vec_size == recylce_vec.size()) {
+                    if(re_empty_check == true || start_gyeongsangdo_size == recylce_vec.size()) {
                         arealist.setListData(charge_vec);
                         recylce_vec.removeAllElements();
                     } else {
-                        while(recylce_vec.size() != vec_size) {
-                            recylce_vec.remove(vec_size);
+                        /*while(recylce_vec.size() != gyeongsangdo_size) {
+                            recylce_vec.remove(gyeongsangdo_size);
+                        } */
+                        int index=0;
+                        for(int i=0;i<recylce_vec.size();i++) {
+                            if(recylce_vec.get(i).toString().contains("경상도") || recylce_vec.get(i).toString().contains("경상북도") ||
+                                    recylce_vec.get(i).toString().contains("경상남도") || recylce_vec.get(i).toString().contains("부산시") ||
+                                    recylce_vec.get(i).toString().contains("부산광역시") || recylce_vec.get(i).toString().contains("울산시") ||
+                                    recylce_vec.get(i).toString().contains("울산광역시")) {
+                                index = i;
+                                break;
+                            }
+                        }
+                        for(int i=0;i<end_gyeongsangdo_size;i++) {
+                            recylce_vec.remove(index);
                         }
                         arealist.removeAll();
                         arealist.setListData(recylce_vec);
@@ -261,13 +334,14 @@ public class Mainform extends JFrame{
                         re_empty_check = true;
                     } else {
                         re_empty_check = false;
-                        vec_size = recylce_vec.size();
+                        start_jejudo_size = recylce_vec.size();
                     }
                     for (int i = 0; i < st_charge_data.size(); i++) {
                         if (st_charge_data.get(i).contains("제주시") || st_charge_data.get(i).contains("제주특별자치도")) {
                             recylce_vec.addElement(st_charge_data.get(i));
                         }
                     }
+                    end_jejudo_size = recylce_vec.size() - start_jejudo_size;
                     if(re_empty_check == true) {
                         arealist.setListData(recylce_vec);
                     }
@@ -277,12 +351,22 @@ public class Mainform extends JFrame{
                     }
                 }
                 else {
-                    if(re_empty_check == true || vec_size == recylce_vec.size()) {
+                    if(re_empty_check == true || start_jejudo_size == recylce_vec.size()) {
                         arealist.setListData(charge_vec);
                         recylce_vec.removeAllElements();
                     } else {
-                        while(recylce_vec.size() != vec_size) {
-                            recylce_vec.remove(vec_size);
+                      /*  while(recylce_vec.size() != jejudo_size) {
+                            recylce_vec.remove(jejudo_size);
+                        } */
+                        int index=0;
+                        for(int i=0;i<recylce_vec.size();i++) {
+                            if(recylce_vec.get(i).toString().contains("제주시") || recylce_vec.get(i).toString().contains("제주특별자치도")) {
+                                index = i;
+                                break;
+                            }
+                        }
+                        for(int i=0;i<end_jejudo_size;i++) {
+                            recylce_vec.remove(index);
                         }
                         arealist.removeAll();
                         arealist.setListData(recylce_vec);
