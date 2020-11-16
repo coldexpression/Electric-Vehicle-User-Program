@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="formPackage.Mainform">
-  <grid id="27dc6" binding="JPanel" layout-manager="GridLayoutManager" row-count="5" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="JPanel" layout-manager="GridLayoutManager" row-count="8" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="16" y="27" width="520" height="424"/>
+      <xy x="16" y="27" width="533" height="424"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -15,7 +15,7 @@
       </hspacer>
       <scrollpane id="d9181" binding="sp">
         <constraints>
-          <grid row="1" column="0" row-span="4" col-span="6" vsize-policy="7" hsize-policy="7" anchor="9" fill="0" indent="1" use-parent-layout="false">
+          <grid row="1" column="0" row-span="7" col-span="6" vsize-policy="7" hsize-policy="7" anchor="9" fill="0" indent="1" use-parent-layout="false">
             <preferred-size width="680" height="500"/>
           </grid>
         </constraints>
@@ -29,6 +29,7 @@
             <constraints/>
             <properties>
               <model/>
+              <selectionMode value="0"/>
             </properties>
           </component>
         </children>
@@ -67,14 +68,6 @@
           <text value="충청도"/>
         </properties>
       </component>
-      <component id="a5d5e" class="javax.swing.JLabel" binding="lb1">
-        <constraints>
-          <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="배터리타입"/>
-        </properties>
-      </component>
       <component id="2fd0d" class="javax.swing.JCheckBox" binding="gyeongsangdo">
         <constraints>
           <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -89,6 +82,38 @@
         </constraints>
         <properties>
           <text value="제주도"/>
+        </properties>
+      </component>
+      <component id="a5d5e" class="javax.swing.JLabel" binding="lb_locate">
+        <constraints>
+          <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="위치가 표시됩니다."/>
+        </properties>
+      </component>
+      <component id="1ba1f" class="javax.swing.JLabel" binding="lb_battery">
+        <constraints>
+          <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="배터리가 표시됩니다."/>
+        </properties>
+      </component>
+      <component id="709e3" class="javax.swing.JLabel" binding="lb_time">
+        <constraints>
+          <grid row="3" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="운영시간이 표시됩니다."/>
+        </properties>
+      </component>
+      <component id="557c9" class="javax.swing.JLabel" binding="lb_use">
+        <constraints>
+          <grid row="4" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="사용여부가 표시됩니다."/>
         </properties>
       </component>
     </children>
