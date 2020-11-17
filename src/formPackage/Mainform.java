@@ -7,6 +7,8 @@ import javax.swing.event.ListSelectionListener;
 import Module.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.*;
@@ -26,6 +28,8 @@ public class Mainform extends JFrame{
     private JLabel lb_battery;
     private JLabel lb_time;
     private JLabel lb_use;
+    private JButton bt_start;
+    private JLabel lb_size;
     boolean re_empty_check = true;
     int vec_size=0;
     int start_seoul_size=0;
@@ -474,11 +478,39 @@ public class Mainform extends JFrame{
                     lb_battery.setText(lb_pri_data.get(pri_list_index).get(1).toString());
                     lb_time.setText(lb_pri_data.get(pri_list_index).get(2).toString());
                     lb_use.setText(lb_pri_data.get(pri_list_index).get(3).toString());
+                    lb_size.setText(lb_pri_data.get(pri_list_index).get(4).toString() + " KW");
                 } else if(select_list_name.equals(lb_env_data.get(env_list_index).get(0))) {
                     lb_locate.setText(lb_env_data.get(env_list_index).get(0).toString());
                     lb_battery.setText(lb_env_data.get(env_list_index).get(1).toString());
                     lb_time.setText(lb_env_data.get(env_list_index).get(2).toString());
                     lb_use.setText(lb_env_data.get(env_list_index).get(3).toString());
+                    lb_size.setText(lb_env_data.get(env_list_index).get(4).toString() + " KW");
+                }
+                if(lb_use.getText() == "사용가능") {
+                    bt_start.setEnabled(true);
+                    bt_start.setText("충전시작");
+                } else if(lb_use.getText() == "사용중") {
+                    bt_start.setEnabled(false);
+                    bt_start.setText("충전중");
+                }
+            }
+        });
+        bt_start.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String[] charge_battery = lb_size.getText().split(" ");
+                int time = CalcChargingTime.calc(50,Integer.parseInt(charge_battery[0]));
+                int result = JOptionPane.showConfirmDialog(null,
+                        "충전소 이름: "+lb_locate.getText()+"\n충전기 타입: "+lb_battery.getText()+"\n이용가능시간: "
+                                +lb_time.getText()+"\n현재상태: "+lb_use.getText()+"\n해당 충전소와 타입이 맞습니까?",
+                        "확인",JOptionPane.YES_NO_OPTION);
+                if(result == JOptionPane.YES_OPTION) {
+                    System.out.println("차 배터리 "+50+"충전소 배터리 "+Integer.parseInt(charge_battery[0]));
+                    System.out.println("충전 소요시간은 "+time+"분 입니다.");
+                } else if(result == JOptionPane.NO_OPTION) {
+                    System.out.println("이용하지않음, 창을 닫겠습니다.");
+                } else {
+                    System.out.println("해당사항 없음");
                 }
             }
         });
