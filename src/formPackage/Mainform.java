@@ -30,6 +30,7 @@ public class Mainform extends JFrame{
     private JLabel lb_use;
     private JButton bt_start;
     private JLabel lb_size;
+    private JProgressBar loading_bar;
     boolean re_empty_check = true;
     int vec_size=0;
     int start_seoul_size=0;
@@ -51,6 +52,7 @@ public class Mainform extends JFrame{
         chungcheongdo.setBounds(200,230,200,200);
         System.out.println("호출");
     }
+
 
     public Mainform() {
         Vector charge_vec = new Vector();
@@ -499,14 +501,21 @@ public class Mainform extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] charge_battery = lb_size.getText().split(" ");
-                int time = CalcChargingTime.calc(50,Integer.parseInt(charge_battery[0]));
+                int time=0;
+                int percent_car_charge=0;
+                int trans_car_charge=0;
                 int result = JOptionPane.showConfirmDialog(null,
                         "충전소 이름: "+lb_locate.getText()+"\n충전기 타입: "+lb_battery.getText()+"\n이용가능시간: "
                                 +lb_time.getText()+"\n현재상태: "+lb_use.getText()+"\n해당 충전소와 타입이 맞습니까?",
                         "확인",JOptionPane.YES_NO_OPTION);
                 if(result == JOptionPane.YES_OPTION) {
-                    System.out.println("차 배터리 "+50+"충전소 배터리 "+Integer.parseInt(charge_battery[0]));
-                    System.out.println("충전 소요시간은 "+time+"분 입니다.");
+                    String str_car_charge = JOptionPane.showInputDialog("현재 차량의 남은 배터리 양을 입력해주세요 (%단위)\n" +
+                            "[예시: 배터리가 23% 남았으면 23을 입력해 주세요.");
+                    if(str_car_charge != null) {
+                        percent_car_charge = Integer.parseInt(str_car_charge);
+                        trans_car_charge = CalcChargingTime.trans(50,percent_car_charge);
+                        time = CalcChargingTime.calc(50,trans_car_charge,Integer.parseInt(charge_battery[0]));
+                    }
                 } else if(result == JOptionPane.NO_OPTION) {
                     System.out.println("이용하지않음, 창을 닫겠습니다.");
                 } else {
