@@ -13,8 +13,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.*;
 import java.util.List;
+import javax.swing.Timer;
 
 public class Mainform extends JFrame{
+    private Timer timer;
     private javax.swing.JPanel JPanel;
     private JList arealist;
     private JScrollPane sp;
@@ -31,8 +33,12 @@ public class Mainform extends JFrame{
     private JButton bt_start;
     private JLabel lb_size;
     private JProgressBar loading_bar;
+    private JLabel lb_endtime;
+    private JLabel lb_uselocate;
+    private JLabel lb_usetype;
+    private JButton bt_end;
     boolean re_empty_check = true;
-    int vec_size=0;
+    int thread_check=0;
     int start_seoul_size=0;
     int end_seoul_size=0;
     int start_kyunggi_size=0;
@@ -45,6 +51,9 @@ public class Mainform extends JFrame{
     int end_gyeongsangdo_size=0;
     int start_jejudo_size=0;
     int end_jejudo_size=0;
+    int thread_time = 0;
+    int percent_car_charge = 0;
+    static int value=0;
     public void Buttonsize() {
         seoul.setBounds(200,200,200,200);
         kyunggi.setBounds(200,210,200,200);
@@ -52,6 +61,42 @@ public class Mainform extends JFrame{
         chungcheongdo.setBounds(200,230,200,200);
         System.out.println("호출");
     }
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            int val = percent_car_charge;
+            int car_battery;
+            double cost;
+            String[] kw = lb_size.getText().toString().split(" ");
+            double move_time = thread_time;
+            double fix_time= (double)thread_time/(100-(double)val);
+            System.out.println("tt : "+thread_time + " fix_time : "+fix_time);
+            thread_check = 0;
+            while(percent_car_charge < 100 && thread_check==0) {
+                percent_car_charge++;
+                System.out.println(percent_car_charge);
+                loading_bar.setValue(percent_car_charge);
+                loading_bar.setString(percent_car_charge+"%");
+                move_time -= fix_time;
+                lb_endtime.setText("총 예상 소요시간 : " + Math.round(move_time) + " 분");
+                try {
+                    Thread.sleep(10*thread_time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            bt_start.setEnabled(true);
+            bt_end.setEnabled(false);
+            car_battery = CalcChargingTime.trans(50,percent_car_charge);
+            cost = CalcChargingTime.cost_calc(Integer.parseInt(kw[0]),car_battery);
+            if(thread_check == 0) {
+                JOptionPane.showMessageDialog(null,"배터리 충전이 완료되었습니다.\n 사용료: "+cost+" 원","충전 완료",JOptionPane.PLAIN_MESSAGE);
+                lb_endtime.setText("현재 "+percent_car_charge+"% 충전 되어있습니다.");
+            } else {
+                JOptionPane.showMessageDialog(null,"배터리 충전이 중단되었습니다.\n 사용료: "+cost+" 원","충전 실패",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    };
 
 
     public Mainform() {
@@ -65,7 +110,7 @@ public class Mainform extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         sp.setViewportView(arealist);
         setContentPane(JPanel);
-        setSize(1600,600);
+        setSize(1100,400);
         Buttonsize();
         pri_data = ci.pri_charge();
         env_data = ci.env_charge();
@@ -501,8 +546,8 @@ public class Mainform extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] charge_battery = lb_size.getText().split(" ");
-                int time=0;
-                int percent_car_charge=0;
+                thread_time=0;
+                percent_car_charge=0;
                 int trans_car_charge=0;
                 int result = JOptionPane.showConfirmDialog(null,
                         "충전소 이름: "+lb_locate.getText()+"\n충전기 타입: "+lb_battery.getText()+"\n이용가능시간: "
@@ -514,7 +559,19 @@ public class Mainform extends JFrame{
                     if(str_car_charge != null) {
                         percent_car_charge = Integer.parseInt(str_car_charge);
                         trans_car_charge = CalcChargingTime.trans(50,percent_car_charge);
-                        time = CalcChargingTime.calc(50,trans_car_charge,Integer.parseInt(charge_battery[0]));
+                        thread_time = CalcChargingTime.calc(50,trans_car_charge,Integer.parseInt(charge_battery[0]));
+                        //String ts = Integer.toString(time);
+                        lb_uselocate.setText(lb_locate.getText());
+                        lb_usetype.setText(lb_battery.getText());
+                        if(thread_time >=10 ) {
+                            lb_endtime.setText("총 예상 소요시간 : " + Integer.toString(thread_time) + " 분");
+                        } else {
+                            lb_endtime.setText("총 예상 소요시간 : " + 10 + " 분 이내");
+                        }
+                        bt_start.setEnabled(false);
+                        bt_end.setEnabled(true);
+                        Thread thread = new Thread(runnable);
+                        thread.start();
                     }
                 } else if(result == JOptionPane.NO_OPTION) {
                     System.out.println("이용하지않음, 창을 닫겠습니다.");
@@ -523,5 +580,17 @@ public class Mainform extends JFrame{
                 }
             }
         });
+        bt_end.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int result = JOptionPane.showConfirmDialog(null,"정말 충전을 중단 하시겠습니까?");
+                if(result == JOptionPane.YES_OPTION) {
+                    thread_check = 1;
+                    lb_endtime.setText("현재 "+percent_car_charge+"% 충전 되어있습니다.");
+                }
+            }
+        });
     }
+
+
 }

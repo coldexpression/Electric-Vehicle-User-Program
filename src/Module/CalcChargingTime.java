@@ -20,4 +20,15 @@ public class CalcChargingTime {
         }
         return count;
     }
+    public static double cost_calc(int input_kw,int input_car_battery) {
+        double cost=1;
+        if(input_kw >= 30) {
+            cost = cost * 173.8;
+        } else {
+            cost = cost * 91.96;
+        }
+        cost = cost * input_car_battery;
+        cost = Math.round(cost);
+        return cost;
+    }
 }

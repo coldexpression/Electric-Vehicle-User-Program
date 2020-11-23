@@ -33,7 +33,12 @@ public class ChargeInfo {
                     m_prinfo.add(split_line[split_line.length-2]); //배터리 타입 입력
                     m_prinfo.add(split_line[0]); //충전소 이용시간 입력
                     m_prinfo.add("사용가능"); // 충전소 사용여부
-                    m_prinfo.add(random_num); // 충전소 설비용량
+                    //System.out.println(m_prinfo.get(1));
+                    if(m_prinfo.get(1).toString().contains("완속")) {
+                        m_prinfo.add(7);
+                    } else {
+                        m_prinfo.add(random_num); // 충전소 설비용량
+                    }
                     prinfo.add(m_prinfo);
                     m_prinfo = new ArrayList();
                 } else {
