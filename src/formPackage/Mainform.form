@@ -75,15 +75,16 @@
           <text value="사용여부가 표시됩니다."/>
         </properties>
       </component>
-      <component id="6592c" class="javax.swing.JLabel">
+      <component id="6592c" class="javax.swing.JLabel" binding="lb_explain">
         <constraints>
-          <grid row="9" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="9" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="0" height="0"/>
-            <maximum-size width="0" height="0"/>
+            <maximum-size width="500" height="150"/>
           </grid>
         </constraints>
         <properties>
-          <text value=""/>
+          <font name="NanumGothic" size="14"/>
+          <text value="최초 실행시에는 메뉴-&gt;차량 배터리 변경 탭을 클릭해 주세요."/>
         </properties>
       </component>
       <component id="474b" class="javax.swing.JLabel">
@@ -230,7 +231,7 @@
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="6545" height="17"/>
-                <maximum-size width="100" height="30"/>
+                <maximum-size width="300" height="30"/>
               </grid>
             </constraints>
             <properties>

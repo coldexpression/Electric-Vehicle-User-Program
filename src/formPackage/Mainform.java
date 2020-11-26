@@ -37,6 +37,7 @@ public class Mainform extends JFrame{
     private JLabel lb_uselocate;
     private JLabel lb_usetype;
     private JButton bt_end;
+    private JLabel lb_explain;
     boolean re_empty_check = true;
     int thread_check=0;
     int start_seoul_size=0;
@@ -53,14 +54,13 @@ public class Mainform extends JFrame{
     int end_jejudo_size=0;
     int thread_time = 0;
     int percent_car_charge = 0;
-    static int value=0;
-    public void Buttonsize() {
-        seoul.setBounds(200,200,200,200);
-        kyunggi.setBounds(200,210,200,200);
-        junrado.setBounds(200,220,200,200);
-        chungcheongdo.setBounds(200,230,200,200);
-        System.out.println("호출");
-    }
+    int car_battery_size = 0;
+    int pri_list_index;
+    int env_list_index;
+    boolean check_pri_env;
+    List<List> timer_pri_data;
+    List<List> timer_env_data;
+
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
@@ -87,7 +87,7 @@ public class Mainform extends JFrame{
             }
             bt_start.setEnabled(true);
             bt_end.setEnabled(false);
-            car_battery = CalcChargingTime.trans(50,percent_car_charge);
+            car_battery = CalcChargingTime.trans(car_battery_size,percent_car_charge);
             cost = CalcChargingTime.cost_calc(Integer.parseInt(kw[0]),car_battery);
             if(thread_check == 0) {
                 JOptionPane.showMessageDialog(null,"배터리 충전이 완료되었습니다.\n 사용료: "+cost+" 원","충전 완료",JOptionPane.PLAIN_MESSAGE);
@@ -95,11 +95,46 @@ public class Mainform extends JFrame{
             } else {
                 JOptionPane.showMessageDialog(null,"배터리 충전이 중단되었습니다.\n 사용료: "+cost+" 원","충전 실패",JOptionPane.ERROR_MESSAGE);
             }
+            if(check_pri_env == true) {
+                timer_pri_data.get(pri_list_index).set(3,"사용가능");
+            } else {
+                timer_env_data.get(env_list_index).set(3,"사용가능");
+            }
         }
     };
+    class MenuActionListener implements ActionListener{
+        public void actionPerformed(ActionEvent e) {
+            String select = e.getActionCommand();
+            String change;
+            if(select.equals("차량 배터리 변경")) {
+                change = JOptionPane.showInputDialog("차량의 배터리를 입력해 주세요. [kw 단위] \n 예시: 50kw 차량이면 50 을 입력");
+                car_battery_size = Integer.parseInt(change);
+                bt_start.setEnabled(true);
+            } else if(select.equals("관리자 모드")) {
+                new PWform();
+                dispose();
+            }
+        }
+    }
 
+    public List<List> return_env(List<List> env) {
+        env = timer_env_data;
+        return env;
+    }
+    public List<List> return_pri(List<List> pri) {
+        pri = timer_pri_data;
+        return pri;
+    }
 
     public Mainform() {
+        JMenuBar mb = new JMenuBar();
+        JMenu jm = new JMenu("메뉴");
+        JMenuItem item1 = new JMenuItem("차량 배터리 변경");
+        JMenuItem item2 = new JMenuItem("관리자 모드");
+        jm.add(item1);
+        jm.add(item2);
+        mb.add(jm);
+        setJMenuBar(mb);
         Vector charge_vec = new Vector();
         Vector recylce_vec = new Vector();
         ChargeInfo ci = new ChargeInfo();
@@ -111,7 +146,6 @@ public class Mainform extends JFrame{
         sp.setViewportView(arealist);
         setContentPane(JPanel);
         setSize(1100,400);
-        Buttonsize();
         pri_data = ci.pri_charge();
         env_data = ci.env_charge();
         for(int i=0;i<pri_data.size();i++) {
@@ -124,6 +158,8 @@ public class Mainform extends JFrame{
         st_charge_data.addAll(charge_vec);
         setResizable(false);
         setVisible(true);
+        item1.addActionListener(new MenuActionListener());
+        item2.addActionListener(new MenuActionListener());
         seoul.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -505,13 +541,15 @@ public class Mainform extends JFrame{
         });
         List <List> lb_pri_data = pri_data;
         List <List> lb_env_data = env_data;
+        timer_pri_data = pri_data;
+        timer_env_data = env_data;
         arealist.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 int select_list_index=arealist.getSelectedIndex();
                 String select_list_name = arealist.getSelectedValue().toString();
-                int pri_list_index=0;
-                int env_list_index=0;
+                pri_list_index=0;
+                env_list_index=0;
                 while(!select_list_name.equals(lb_pri_data.get(pri_list_index).get(0)) && !select_list_name.equals(lb_env_data.get(env_list_index).get(0))) {
                     if(pri_list_index < lb_pri_data.size()-1) {
                         pri_list_index++;
@@ -521,12 +559,14 @@ public class Mainform extends JFrame{
                     }
                 }
                 if(select_list_name.equals(lb_pri_data.get(pri_list_index).get(0))) {
+                    check_pri_env = true;
                     lb_locate.setText(lb_pri_data.get(pri_list_index).get(0).toString());
                     lb_battery.setText(lb_pri_data.get(pri_list_index).get(1).toString());
                     lb_time.setText(lb_pri_data.get(pri_list_index).get(2).toString());
                     lb_use.setText(lb_pri_data.get(pri_list_index).get(3).toString());
                     lb_size.setText(lb_pri_data.get(pri_list_index).get(4).toString() + " KW");
                 } else if(select_list_name.equals(lb_env_data.get(env_list_index).get(0))) {
+                    check_pri_env = false;
                     lb_locate.setText(lb_env_data.get(env_list_index).get(0).toString());
                     lb_battery.setText(lb_env_data.get(env_list_index).get(1).toString());
                     lb_time.setText(lb_env_data.get(env_list_index).get(2).toString());
@@ -534,7 +574,7 @@ public class Mainform extends JFrame{
                     lb_size.setText(lb_env_data.get(env_list_index).get(4).toString() + " KW");
                 }
                 if(lb_use.getText() == "사용가능") {
-                    bt_start.setEnabled(true);
+                   // bt_start.setEnabled(true);
                     bt_start.setText("충전시작");
                 } else if(lb_use.getText() == "사용중") {
                     bt_start.setEnabled(false);
@@ -558,8 +598,8 @@ public class Mainform extends JFrame{
                             "[예시: 배터리가 23% 남았으면 23을 입력해 주세요.");
                     if(str_car_charge != null) {
                         percent_car_charge = Integer.parseInt(str_car_charge);
-                        trans_car_charge = CalcChargingTime.trans(50,percent_car_charge);
-                        thread_time = CalcChargingTime.calc(50,trans_car_charge,Integer.parseInt(charge_battery[0]));
+                        trans_car_charge = CalcChargingTime.trans(car_battery_size,percent_car_charge);
+                        thread_time = CalcChargingTime.calc(car_battery_size,trans_car_charge,Integer.parseInt(charge_battery[0]));
                         //String ts = Integer.toString(time);
                         lb_uselocate.setText(lb_locate.getText());
                         lb_usetype.setText(lb_battery.getText());
@@ -567,6 +607,12 @@ public class Mainform extends JFrame{
                             lb_endtime.setText("총 예상 소요시간 : " + Integer.toString(thread_time) + " 분");
                         } else {
                             lb_endtime.setText("총 예상 소요시간 : " + 10 + " 분 이내");
+                        }
+
+                        if(check_pri_env == true) {
+                            lb_pri_data.get(pri_list_index).set(3,"사용중");
+                        } else {
+                            lb_env_data.get(env_list_index).set(3,"사용중");
                         }
                         bt_start.setEnabled(false);
                         bt_end.setEnabled(true);
