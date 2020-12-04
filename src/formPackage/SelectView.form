@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="formPackage.SelectView">
-  <grid id="27dc6" binding="JPanel" layout-manager="GridLayoutManager" row-count="7" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="JPanel" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="30" left="20" bottom="30" right="20"/>
     <constraints>
       <xy x="20" y="31" width="514" height="599"/>
@@ -8,9 +8,18 @@
     <properties/>
     <border type="none"/>
     <children>
+      <vspacer id="1f0ff">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
       <component id="39c64" class="javax.swing.JButton" binding="ManagerButton">
         <constraints>
-          <grid row="0" column="0" row-span="3" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="150" height="50"/>
+            <preferred-size width="150" height="50"/>
+            <maximum-size width="150" height="50"/>
+          </grid>
         </constraints>
         <properties>
           <text value="ManagerMode"/>
@@ -18,7 +27,11 @@
       </component>
       <component id="49265" class="javax.swing.JButton" binding="UserButton">
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="150" height="50"/>
+            <preferred-size width="150" height="50"/>
+            <maximum-size width="150" height="50"/>
+          </grid>
         </constraints>
         <properties>
           <enabled value="true"/>
@@ -30,11 +43,6 @@
           <verticalTextPosition value="0"/>
         </properties>
       </component>
-      <vspacer id="1f0ff">
-        <constraints>
-          <grid row="4" column="0" row-span="3" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </vspacer>
     </children>
   </grid>
 </form>
