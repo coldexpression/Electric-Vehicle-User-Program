@@ -3,6 +3,8 @@ package formPackage;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Graphics;
+import java.awt.Image;
 public class SelectView extends JFrame{
     private javax.swing.JPanel JPanel;
     private JButton UserButton;
@@ -18,7 +20,7 @@ public class SelectView extends JFrame{
                 dispose();
             }
         });
-        setSize(300,100);
+        setSize(400,600);
         setResizable(false);
         setVisible(true);
         UserButton.addActionListener(new ActionListener() {

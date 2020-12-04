@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="formPackage.Mainform">
-  <grid id="27dc6" binding="JPanel" layout-manager="GridLayoutManager" row-count="17" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
+  <grid id="27dc6" binding="JPanel" layout-manager="GridLayoutManager" row-count="17" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
     <margin top="0" left="0" bottom="300" right="0"/>
     <constraints>
       <xy x="5" y="14" width="27152" height="934"/>
     </constraints>
     <properties>
+      <background color="-1"/>
       <enabled value="true"/>
+      <foreground color="-1"/>
     </properties>
     <border type="none" title=""/>
     <children>
       <scrollpane id="d9181" binding="sp">
         <constraints>
-          <grid row="1" column="0" row-span="16" col-span="6" vsize-policy="7" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false">
+          <grid row="1" column="0" row-span="16" col-span="7" vsize-policy="7" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="800" height="600"/>
             <maximum-size width="800" height="600"/>
           </grid>
         </constraints>
         <properties>
+          <background color="-1"/>
           <horizontalScrollBarPolicy value="31"/>
           <verticalScrollBarPolicy value="22"/>
         </properties>
@@ -26,6 +29,9 @@
           <component id="cc256" class="javax.swing.JList" binding="arealist">
             <constraints/>
             <properties>
+              <background color="-1"/>
+              <enabled value="true"/>
+              <font name="Malgun Gothic"/>
               <model/>
               <selectionMode value="0"/>
             </properties>
@@ -34,7 +40,7 @@
       </scrollpane>
       <component id="a5d5e" class="javax.swing.JLabel" binding="lb_locate">
         <constraints>
-          <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+          <grid row="1" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="800" height="30"/>
             <maximum-size width="800" height="30"/>
           </grid>
@@ -42,42 +48,46 @@
         <properties>
           <horizontalAlignment value="10"/>
           <horizontalTextPosition value="11"/>
+          <icon value="Image/mini.png"/>
           <text value="위치가 표시됩니다."/>
         </properties>
       </component>
       <component id="1ba1f" class="javax.swing.JLabel" binding="lb_battery">
         <constraints>
-          <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+          <grid row="2" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
             <maximum-size width="200" height="30"/>
           </grid>
         </constraints>
         <properties>
+          <icon value="Image/Mobile-Full-Battery-icon.png"/>
           <text value="배터리가 표시됩니다."/>
         </properties>
       </component>
       <component id="709e3" class="javax.swing.JLabel" binding="lb_time">
         <constraints>
-          <grid row="3" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+          <grid row="3" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
             <maximum-size width="200" height="30"/>
           </grid>
         </constraints>
         <properties>
+          <icon value="Image/open.png"/>
           <text value="운영시간이 표시됩니다."/>
         </properties>
       </component>
       <component id="557c9" class="javax.swing.JLabel" binding="lb_use">
         <constraints>
-          <grid row="4" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+          <grid row="4" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
             <maximum-size width="200" height="30"/>
           </grid>
         </constraints>
         <properties>
+          <icon value="Image/accept.jpg"/>
           <text value="사용여부가 표시됩니다."/>
         </properties>
       </component>
       <component id="6592c" class="javax.swing.JLabel" binding="lb_explain">
         <constraints>
-          <grid row="9" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+          <grid row="9" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="0" height="0"/>
             <maximum-size width="500" height="150"/>
           </grid>
@@ -89,7 +99,7 @@
       </component>
       <component id="474b" class="javax.swing.JLabel">
         <constraints>
-          <grid row="8" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="8" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="0" height="0"/>
             <maximum-size width="0" height="0"/>
           </grid>
@@ -100,7 +110,7 @@
       </component>
       <component id="a211c" class="javax.swing.JLabel">
         <constraints>
-          <grid row="7" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="7" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="0" height="0"/>
             <maximum-size width="0" height="0"/>
           </grid>
@@ -111,7 +121,7 @@
       </component>
       <component id="949e9" class="javax.swing.JLabel">
         <constraints>
-          <grid row="6" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="6" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="0" height="0"/>
             <maximum-size width="0" height="0"/>
           </grid>
@@ -122,11 +132,12 @@
       </component>
       <component id="28b97" class="javax.swing.JLabel" binding="lb_size">
         <constraints>
-          <grid row="5" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="200" height="30"/>
+          <grid row="5" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+            <maximum-size width="250" height="30"/>
           </grid>
         </constraints>
         <properties>
+          <icon value="Image/plug.png"/>
           <text value="충전소 설비용량이 표시됩니다."/>
         </properties>
       </component>
@@ -139,6 +150,8 @@
           </grid>
         </constraints>
         <properties>
+          <background color="-1"/>
+          <foreground color="-16777216"/>
           <text value="전라도"/>
           <verticalAlignment value="1"/>
           <verticalTextPosition value="1"/>
@@ -153,6 +166,8 @@
           </grid>
         </constraints>
         <properties>
+          <background color="-1"/>
+          <foreground color="-16777216"/>
           <text value="충청도"/>
           <verticalAlignment value="1"/>
           <verticalTextPosition value="1"/>
@@ -167,6 +182,8 @@
           </grid>
         </constraints>
         <properties>
+          <background color="-1"/>
+          <foreground color="-16777216"/>
           <text value="경상도"/>
           <verticalAlignment value="1"/>
           <verticalTextPosition value="1"/>
@@ -181,6 +198,8 @@
           </grid>
         </constraints>
         <properties>
+          <background color="-1"/>
+          <foreground color="-16777216"/>
           <text value="제주도"/>
           <verticalAlignment value="1"/>
           <verticalTextPosition value="1"/>
@@ -195,6 +214,8 @@
           </grid>
         </constraints>
         <properties>
+          <background color="-1"/>
+          <foreground color="-16777216"/>
           <text value="경기도"/>
           <verticalAlignment value="1"/>
           <verticalTextPosition value="1"/>
@@ -209,6 +230,8 @@
           </grid>
         </constraints>
         <properties>
+          <background color="-1"/>
+          <foreground color="-16777216"/>
           <text value="서울"/>
           <verticalAlignment value="1"/>
           <verticalTextPosition value="1"/>
@@ -217,9 +240,11 @@
       <grid id="c6f5" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="16" column="6" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="16" column="7" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-1"/>
+        </properties>
         <border type="none" title="사용중인 충전소"/>
         <children>
           <hspacer id="78d43">
@@ -235,6 +260,7 @@
               </grid>
             </constraints>
             <properties>
+              <icon value="Image/Mobile-Full-Battery-icon.png"/>
               <text value="사용중인 타입"/>
             </properties>
           </component>
@@ -263,6 +289,7 @@
               </grid>
             </constraints>
             <properties>
+              <icon value="Image/time.png"/>
               <text value="남은시간 및 배터리 잔량이 표시됩니다."/>
             </properties>
           </component>
@@ -276,6 +303,7 @@
             </constraints>
             <properties>
               <enabled value="false"/>
+              <foreground color="-1"/>
               <text value="충전시작"/>
             </properties>
           </component>
@@ -289,6 +317,7 @@
             </constraints>
             <properties>
               <enabled value="false"/>
+              <foreground color="-1"/>
               <text value="충전종료"/>
             </properties>
           </component>
@@ -299,11 +328,29 @@
               </grid>
             </constraints>
             <properties>
+              <icon value="Image/mini.png"/>
               <text value="사용중인 위치"/>
             </properties>
           </component>
         </children>
       </grid>
+      <component id="af9b0" class="javax.swing.JCheckBox" binding="Gwangwondo">
+        <constraints>
+          <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="80" height="30"/>
+            <preferred-size width="80" height="30"/>
+            <maximum-size width="80" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <foreground color="-16777216"/>
+          <selected value="false"/>
+          <text value="강원도"/>
+          <verticalAlignment value="1"/>
+          <verticalTextPosition value="1"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

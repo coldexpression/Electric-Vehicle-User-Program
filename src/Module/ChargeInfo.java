@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 public class ChargeInfo {
     //static List m_envinfo;
     //static List<List> envinfo;
@@ -13,7 +14,7 @@ public class ChargeInfo {
     // 리스트 = [위치, 배터리 타입, 충전소 이용시간, 충전소 사용여부]
     // 민간기업 '16년도 전국 충전소 목록
     public static List<List> pri_charge() {
-        File file = new File("D:\\Git_repos\\Electric-Vehicle-User-Program\\src\\pri_charge.txt");
+        File file = new File("./src/pri_charge.txt");
         List m_prinfo;
         List<List> prinfo = new ArrayList();
         double radomValue;
@@ -49,14 +50,14 @@ public class ChargeInfo {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("민간기업 전국 충전소 목록");
-        System.out.println(prinfo);
+       // System.out.println("민간기업 전국 충전소 목록");
+       // System.out.println(prinfo);
         return prinfo;
     }
 
     // 환경부 '16년도 전국 충전소 목록
     public static List<List> env_charge() {
-        File file = new File("D:\\Git_repos\\Electric-Vehicle-User-Program\\src\\Env_charge.txt");
+        File file = new File("./src/Env_charge.txt");
         List m_envinfo;
         List<List> envinfo;
         envinfo = new ArrayList();
@@ -88,10 +89,30 @@ public class ChargeInfo {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("환경부 전국 충전소 목록");
-        System.out.println(envinfo);
+        //System.out.println("환경부 전국 충전소 목록");
+       // System.out.println(envinfo);
         return envinfo;
     }
+    public static String find_charge_index(List<List> pri_data,List<List> env_data,String full_addr) {
+        int pri_list_index = 0;
+        int env_list_index = 0;
+        String agency_index = null;
+        while(!full_addr.equals(pri_data.get(pri_list_index).get(0)) && !full_addr.equals(env_data.get(env_list_index).get(0))) {
+            if(pri_list_index < pri_data.size()-1) {
+                pri_list_index++;
+            }
+            if(env_list_index < env_data.size()-1) {
+                env_list_index++;
+            }
+        }
+        if(full_addr.equals(pri_data.get(pri_list_index).get(0))) {
+            agency_index = "pri"+ " " + String.valueOf(pri_list_index);
+        } else if(full_addr.equals(env_data.get(env_list_index).get(0))){
+            agency_index = "env"+ " " + String.valueOf(env_list_index);
+        }
+        return agency_index;
+    }
+
     public static void main(String args[]) {
         List<List> test = new ArrayList();
         pri_charge();
